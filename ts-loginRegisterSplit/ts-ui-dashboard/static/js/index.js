@@ -1,4 +1,0 @@
-function onLoadBody(){
-    setTodayDateRebook();
-    setTodayDatePreserve();
-}
