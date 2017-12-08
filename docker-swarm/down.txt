@@ -1,0 +1,24 @@
+docker stack rm lr-merged-compose-swarm
+docker stack rm lr-split-compose-swarm
+
+强制离开集群：
+manager:
+docker swarm leave --force
+worker:
+docker swarm leave
+
+停止容器、清理镜像：
+echo 'y' | sudo dmsetup udevcomplete_all
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -q)
+
+
+
+*设置protainer监控时：
+docker: failed to register layer: devmapper: Error activating devmapper device for '0a44c10538b936cfb6fa0d4395b63792ca9f50c6bedd1358f82c025a8df6a6b1': devicemapper: Can't set cookie dm_task_set_cookie failed.
+*Devicemapper: Can't set cookie dm_task_set_cookie failed
+
+解决：echo 'y' | sudo dmsetup udevcomplete_all
+
+https://www.bbsmax.com/A/A7zg22MVd4/
